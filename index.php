@@ -14,6 +14,26 @@ $recent_posts = array();
 while ($row = $resulf_recent_posts->fetch_assoc()) {
 	$recent_posts[] = $row;
 }
+
+$query_recent_posts2 = "SELECT * FROM posts ORDER BY created_at DESC LIMIT 6, 1";
+
+$resulf_recent_posts2 = $conn->query($query_recent_posts2);
+
+$recent_posts2 = array();
+
+while ($row2 = $resulf_recent_posts2->fetch_assoc()) {
+	$recent_posts2[] = $row2;
+}
+
+$query_recent_posts3 = "SELECT * FROM posts ORDER BY created_at DESC LIMIT 7, 6";
+
+$resulf_recent_posts3 = $conn->query($query_recent_posts3);
+
+$recent_posts3 = array();
+
+while ($row3 = $resulf_recent_posts3->fetch_assoc()) {
+	$recent_posts3[] = $row3;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -222,6 +242,49 @@ while ($row = $resulf_recent_posts->fetch_assoc()) {
 
 				<!-- row -->
 				<div class="row">
+					<div class="col-md-8">
+						<div class="row">
+							<?php 
+								foreach ($recent_posts2 as $post2){
+							?>
+							<!-- post -->
+							<div class="col-md-12">
+								<div class="post post-thumb">
+									<a class="post-img" href="blog-post.html"><img src="<?php echo $post2['thumbnail'] ?>" alt=""></a>
+									<div class="post-body">
+										<div class="post-meta">
+											<!-- <a class="post-category cat-3" href="category.html">Jquery</a> -->
+											<span class="post-date"><?php echo $post2['created_at'] ?></span>
+										</div>
+										<h3 class="post-title"><a href="blog-post.html"><?php echo $post2['title'] ?></a></h3>
+									</div>
+								</div>
+							</div>
+							<!-- /post -->
+						<?php } ?>
+							<!-- post -->
+							<?php 
+								foreach ($recent_posts3 as $post3){
+							?>
+							<div class="col-md-6">
+								<div class="post">
+									<a class="post-img" href="blog-post.html"><img src="<?php echo $post3['thumbnail'] ?>" alt="" width="400px" height="250px"></a>
+									<div class="post-body">
+										<div class="post-meta">
+											<!-- <a class="post-category cat-4" href="category.html">Css</a> -->
+											<span class="post-date"><?php echo $post3['created_at'] ?></span>
+										</div>
+										<h3 class="post-title"><a href="blog-post.html"><?php echo $post3['title'] ?></a></h3>
+									</div>
+								</div>
+							</div>
+							<!-- /post -->
+						<?php } ?>
+							<!-- post -->
+							
+						</div>
+					</div>
+
 					<div class="col-md-4">
 						<!-- post widget -->
 						<div class="aside-widget">
